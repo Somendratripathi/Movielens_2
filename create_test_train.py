@@ -19,7 +19,7 @@ train = df.iloc[randomList]
 other_indices = df.index.isin(randomList)
 test = df[~other_indices]
 
-train.to_csv('Data/train.csv')
-test.to_csv('Data/test.csv')
+train.to_csv('Data/train.csv', index=False)
+test.to_csv('Data/test.csv', index=False)
 
 
