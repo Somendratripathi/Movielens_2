@@ -1,6 +1,7 @@
 import numpy as np
 import findspark
 import collections
+from collections import ChainMap
 from functools import reduce
 import pandas as pd
 import os
@@ -45,11 +46,45 @@ def jaccard_similarity(target_user, similar_users, user_movies):
     return values
 
 
+def predict(user, item , user_mean_rating, output_scores, user_movies):
+    if user not in user_mean_rating:
+        return 3
+    if user not in output_scores:
+        return user_mean_rating[user]
+    num = 0
+    den = 0
+    similar_users = list(output_scores[user].keys())
+    for similar_user in similar_users:
+        if item in user_movies[similar_user].keys():
+            num += output_scores[user][similar_user] * user_movies[similar_user][item]
+            den += np.abs(output_scores[user][similar_user])
+    if den == 0:
+        return user_mean_rating[user]
+    return num/den
+
+
+def rmse(x,y):
+    z = np.square([a-b for a,b in zip(x,y)])
+    return math.sqrt(np.sum(z)/len(z))
+
 # l = [[1], [2]]
 # z = set([item for sublist in l for item in sublist])
 # print(z)
 # exit(0)
 
+
+# data = [{'name': 'John Doe', 'age': 37, 'sex': 'M'},
+#         {'name': 'Lisa Simpson', 'age': 17, 'sex': 'F'},
+#         {'name': 'Bill Clinton', 'age': 57, 'sex': 'M'}]
+#
+# new_dict = {}
+# for item in data:
+#    name = item.pop('name')
+#    new_dict[name] = item
+#
+#
+# print(new_dict)
+# exit(0)
 # A = np.array([[1,2,1], [3,4,3]])
 #
 # for row in A.T:
@@ -63,7 +98,7 @@ config = SparkConf().setAppName("LSH")
 sc = SparkContext(conf=config)
 
 
-train_path = 'Data/train_small.csv'
+train_path = 'Data/train.csv'
 
 
 data = sc.textFile(train_path)
@@ -89,8 +124,9 @@ data = data.filter(lambda x: x != header).map(lambda x: x.split(",")[:-1])\
 user_mean_rating = data.map(lambda x: (x[0], x[2])).groupByKey()\
     .map(lambda x: (x[0],list(set(x[1])))).map(lambda x: (x[0], np.mean(x[1]))).collectAsMap()
 
-user_movies = data.map(lambda x: (x[0], x[1])).groupByKey()\
-    .map(lambda x: (x[0], list(set(x[1])))).sortByKey().collectAsMap()
+user_movies = data.map(lambda x: (x[0], (x[1], x[2]))).groupByKey()\
+    .map(lambda x: (x[0], dict(list(set(x[1]))))).sortByKey().collectAsMap()
+
 
 
 # Identifying the unique movies and users
@@ -104,7 +140,7 @@ print(len(movies))
 movies_matrix = {}
 
 for movie in movies:
-    movies_matrix[movie] = [1 if movie in user_movies[user] else 0 for user in user_movies]
+    movies_matrix[movie] = [1 if movie in user_movies[user].keys() else 0 for user in user_movies]
 
 
 # For each movie, computing the hash value for that
@@ -134,7 +170,8 @@ sig_matrix = signature_matrix(matrix, hash_fns, users)
 
 print(sig_matrix.shape)
 
-print(sig_matrix)
+# print(sig_matrix)
+
 
 sig_matrix_list = sig_matrix.tolist()
 
@@ -147,7 +184,6 @@ find_users = sig_matrix.mapPartitions(lambda x: get_similar_users(x, users))\
     .groupByKey().map(lambda x: (x[0], (list(set([item for sublist in x[1] for item in sublist]))))).sortByKey()
 
 print(find_users.take(20))
-
 print(len(find_users.collect()))
 
 similarity_scores = find_users.map(lambda x: jaccard_similarity(x[0], x[1], user_movies))\
@@ -155,9 +191,33 @@ similarity_scores = find_users.map(lambda x: jaccard_similarity(x[0], x[1], user
 
 # print(similarity_scores.take(20))
 
-similarity_scores = similarity_scores.filter(lambda x: x[1] > threshold)
+similarity_scores = similarity_scores.filter(lambda x: x[1] > threshold)\
+    .map(lambda x: (x[0][0], [(x[0][1],x[1])])).groupByKey().map(lambda x: (x[0], list(x[1])))\
+    .map(lambda x: (x[0], dict([y[0] for y in x[1]]))).sortByKey()
 
-print(similarity_scores.take(20))
+
+output_scores = similarity_scores.collectAsMap()
+
+test_path = 'Data/train_small.csv'
+test_data = sc.textFile(train_path)
+header = test_data.first()
+
+test_data = test_data.filter(lambda x: x != header).map(lambda x: x.split(",")[:-1])\
+    .map(lambda x: (int(x[0]), int(x[1]), float(x[2])))
+
+test_data_prediction = test_data.map(lambda x: predict(x[0], x[1],
+                                                       user_mean_rating, output_scores, user_movies)).collect()
+
+test_data_actual = test_data.map(lambda x: x[2]).collect()
+
+# print(test_data_prediction)
+# print(test_data_actual)
+
+
+print(rmse(test_data_prediction, test_data_actual))
+
+
+
 
 
 
