@@ -4,10 +4,14 @@ Team Members: Ashwin Jayaraman, Somendra Tripathi, Akhil Punia
 
 # About the Movie Lens Data Set
 
-
 ![fig1](fig/fig11.png)
+![fig2](fig/fig12.png)
+![fig3](fig/fig21.png)
+![fig4](fig/fig22.png)
+![fig5](fig/fig3.png)
+![fig6](fig/fig4.png)
+![fig7](fig/fig5.png)
 
-![fig2](https://user-images.githubusercontent.com/16842872/50325188-693d9980-0509-11e9-9437-a31775814ac5.png)
 
 ### Key Features
 - Sparsity
@@ -21,9 +25,9 @@ Team Members: Ashwin Jayaraman, Somendra Tripathi, Akhil Punia
 - 
 
 # Approaches
-- Approximate Nearest Neighbors (ANN) using Locality Sensitive Hashing (LSH)
+- [Approximate Nearest Neighbors (ANN) using Locality Sensitive Hashing (LSH)](ANN.md)
 - Factorization Machines
-- Deep Learning Approaches: Autoencoders and Learning Embeddings through Shallow Networks
+- [Deep Learning Approaches: Autoencoders and Learning Embeddings through Shallow Networks](DeepLearning.md)
 
 # Discussion on Results
 - Metrics
