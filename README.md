@@ -58,21 +58,24 @@ The objective then is to identify what number of active users on platforms shoul
 In easy terms, this task can be be simply understood as making Top 5 recommendations to a carefully selected subset of registered users.
 
 ### Challenges
-- Sparsity 
+##### **Sparsity**
+As we observe from the above exploratory analysis, we see that there are a lot of users and movies. Most users have not seen many of the movies making the item ratings matrix extremely sparse. We first create a subset of users who have seen at least a certain number of movies. This is useful for training the different types of models. Handling those users who have not seen a certain number of movies will be explained in detail under the cold start section. 
 
-- Outliers
+##### **Outliers**
+Certain users have seen and rated a lot of movies. We believe that these users might be bots and are removed from the data. This was done to make our models more realistic and adapt to the real world. This is highlighted by the fact that the top 9863 users contribute to ratings for 9153392 movies. These users roughly rate 928.05 movies. 
  
- 
-- Model Explainability and User Trust
+##### **Model Explainability and User Trust**
+Our business requirement is that we would want to engage our users. We believe explaining why a particular movie is recommended to the user would increase the engagement with the user and would increase the likelihood of the user watching the movie. 
 
-Using collaborative filtering models
+Using approximate nearest neighbours and Factorization Machines, we can explain the reason why a particular movie is being watched. Approximate nearest neighbours provides the similar users and we can recommend using the tagline "Users like you watched this"
 
-- Serendipity
+Factorization Machines gives us the importance of the coefficiants and we can explain why a particular movie is being recommended based on those values 
 
-How to not just recommend popular items? In Top K recommendations we ca try adding new item
+##### **Serendipity**
+We have created different types of models in Factorization Machines. The weight for these movies allows us to recommed certain type of novelties
 
-- Cold Start Problem
-New user s
+##### **Cold Start Problem**
+New user would be asked to provide us a choice of certain movies that they like. Based on those movies, we would autoencode those movies and find similar movies near that cohort. Once we have learnt a bit about the user, we can then use Factorization Machines and Nearest Neighbours to generate predictions
 
 ## Approaches
 - [Approximate Nearest Neighbors (ANN) using Locality Sensitive Hashing (LSH)](ANN.md)
