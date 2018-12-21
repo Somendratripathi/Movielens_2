@@ -36,13 +36,14 @@ The approach in this paper was first to find the no of buckets 2 users collided 
 
 A basic running model using Pandas was implemented which needs to be optimized in Spark. 
 
-## Parameter Tuning and optimal Model 
+## Parameter Tuning
 We trained our model on the 1M Dataset of Movielens and compared that with the benchmark provided by [Surprise](http://surpriselib.com). Tuning the parameters was also done on that dataset.Our parameters were tuned in the following [code](ANN/check_precision.py) and decided in the [jupyter notebook](ANN/ANN_Accuracy_Plots.ipynb). THe final choice for the parameters are 
 - No of Hash Functions - 120 
 - No of Bands - 40 
 - Similarity Threshold - 0.05
 - Prediction Threshold - 4
 
+## Optimal Model Benchmarks
 Or final model had a RMSE Value of 0.990 and a Precision Value of 0.803
 
 ![text](Figures/ANN_Plots/final_rmse.png)
