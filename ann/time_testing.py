@@ -72,7 +72,7 @@ config = SparkConf().setAppName("LSH")
 sc = SparkContext(conf=config)
 
 
-train_path = 'Data/train.csv'
+train_path = '../Data/train.csv'
 
 
 data = sc.textFile(train_path)
@@ -139,5 +139,5 @@ for n in number_of_hash_functions:
             time_list += [(n, m, t2 - t1)]
 
 print(time_list)
-with open("Data/time_list.txt", "wb") as f:
+with open("../Data/time_list.txt", "wb") as f:
     pickle.dump(time_list, f)

@@ -19,8 +19,8 @@ model2.fit(trainset)
 t2 = time.time()
 
 print(t2 - t1)
-if not (os.path.isfile('Data/time_surprise.txt')):
-    with open("Data/time_surprise.txt", "wb") as f:
+if not (os.path.isfile('../Data/time_surprise.txt')):
+    with open("../Data/time_surprise.txt", "wb") as f:
         pickle.dump([t2-t1], f)
 
 test_path = 'Data/test.csv'
@@ -34,6 +34,6 @@ print(surprise.accuracy.rmse(predictions1))
 print(surprise.accuracy.rmse(predictions2))
 
 rmse_values = [surprise.accuracy.rmse(predictions1), surprise.accuracy.rmse(predictions2)]
-if not (os.path.isfile('Data/knn_rmse.txt')):
-    with open("Data/knn_rmse.txt", "wb") as f:
+if not (os.path.isfile('../Data/knn_rmse.txt')):
+    with open("../Data/knn_rmse.txt", "wb") as f:
         pickle.dump(rmse_values, f)
