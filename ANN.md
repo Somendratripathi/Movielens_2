@@ -37,7 +37,7 @@ The approach in this paper was first to find the no of buckets 2 users collided 
 A basic running model using Pandas was implemented which needs to be optimized in Spark. 
 
 ## Parameter Tuning and optimal Model 
-Our parameters were tuned in the following [code](check_precision.py) and decided in the [jupyter notebook](ANN_Accuracy_Plots.ipnyb). THe final choice for the parameters are 
+We trained our model on the 1M Dataset of Movielens and compared that with the benchmark provided by [Surprise](http://surpriselib.com). Tuning the parameters was also done on that dataset.Our parameters were tuned in the following [code](check_precision.py) and decided in the [jupyter notebook](ANN_Accuracy_Plots.ipnyb). THe final choice for the parameters are 
 - No of Hash Functions - 120 
 - No of Bands - 40 
 - Similarity Threshold - 0.05
@@ -47,7 +47,7 @@ Or final model had a RMSE Value of 0.990 and a Precision Value of 0.803
 
 ![text](Plots/final_rmse.png)
 
-We can see above that our model is not performing that well when compared with the KNN Model implemented by the surprise package. It performs significantly better than the random model. These 2 modesl were implemented in the following [code](k_NN.py)
+We can see above that our model is not performing that well when compared with the KNN Model implemented by the surprise package. It performs significantly better than the random model present. The 2 modesl were implemented in the following [code](k_NN.py)
 
 Looking at the time 
 
@@ -55,7 +55,7 @@ Looking at the time
 
 We see that our code which was implemented form scratch performs better than the code written and optimized by the surprise package. Our code leverages the power of Spark to do that
 
-Implementing the package written in Spark would further speeden up our code. We can conclude that our code is 3 times faster and sacrifices a small bit of accuracy to achieve that. Our model will be able to scale well 
+Implementing the package written in Spark would further speeden up our code. We can conclude that our code is 3 times faster and sacrifices a small bit of accuracy to achieve that. Our model will be able to scale well when deployed on the cloud. 
 
 ## Requirements
 ```
