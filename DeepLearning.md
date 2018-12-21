@@ -16,16 +16,16 @@
 
 ## Parameter Tuning and Optimal Model 
 
-[train-validaton-curve](fig/fig11.png)
+![train-validaton-curve](fig/fig11.png)
 
 
 ## Model Results and Explainability
 
-[sample](fig/fig6.png)
-[sample](fig/fig7.png)
-[sample](fig/fig8.png)
-[sample](fig/fig9.png)
-[sample](fig/fig10.png)
+![sample](fig/fig6.png)
+![sample](fig/fig7.png)
+![sample](fig/fig8.png)
+![sample](fig/fig9.png)
+![sample](fig/fig10.png)
 
 [Code](visualising_embeddings.ipynb)
 
