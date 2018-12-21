@@ -1,5 +1,6 @@
 # Final project : Recommending the next best movie" 
-
+**Course:** E4571 Personalisation Theory, Fall 2018, Columbia University
+**Instructor:** Prof. Brett Vintch
 **Team Members:** Ashwin Jayaraman, Somendra Tripathi, Akhil Punia
 
 ## About the Movie Lens Data Set
