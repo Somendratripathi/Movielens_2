@@ -20,6 +20,8 @@
 
 Both the above cases can be implemented when the model is run in production and needs to be updated regularly. That would allow us to learn about these users as they start exploring the platform. 
 
+The total number of such cases in the test data was 2% and should not reflect on the accuracy of the model. 
+
 ## Parameters of the Model
 - h - Number of hashing functions
 - b - Number of Bands 
@@ -34,6 +36,26 @@ The approach in this paper was first to find the no of buckets 2 users collided 
 
 A basic running model using Pandas was implemented which needs to be optimized in Spark. 
 
+## Parameter Tuning and optimal Model 
+Our parameters were tuned in the following [code](check_precision.py) and decided in the [jupyter notebook](ANN_Accuracy_Plots.ipnyb). THe final choice for the parameters are 
+- No of Hash Functions - 120 
+- No of Bands - 40 
+- Similarity Threshold - 0.05
+- Prediction Threshold - 4
+
+Or final model had a RMSE Value of 0.990 and a Precision Value of 0.803
+
+![text](Plots/final_rmse.png)
+
+We can see above that our model is not performing that well when compared with the KNN Model implemented by the surprise package. It performs significantly better than the random model. These 2 modesl were implemented in the following [code](k_NN.py)
+
+Looking at the time 
+
+![text](Plots/avg_time.png)
+
+We see that our code which was implemented form scratch performs better than the code written and optimized by the surprise package. Our code leverages the power of Spark to do that
+
+Implementing the package written in Spark would further speeden up our code. We can conclude that our code is 3 times faster and sacrifices a small bit of accuracy to achieve that. Our model will be able to scale well 
 
 ## Requirements
 ```
