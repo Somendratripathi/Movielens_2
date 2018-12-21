@@ -8,7 +8,7 @@ config = SparkConf().setAppName("LSH")
 
 sc = SparkContext(conf=config)
 
-train_path = 'Data/train.csv'
+train_path = '../Data/train.csv'
 
 
 data = sc.textFile(train_path)

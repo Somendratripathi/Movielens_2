@@ -124,7 +124,7 @@ for index, hash_value in enumerate(hash_values):
 
 
 if os.path.isfile('../Data/similar_users.npy'):
-    user_neighbours = np.load('Data/similar_users_1.npy').item()
+    user_neighbours = np.load('../Data/similar_users_1.npy').item()
 else:
     user_neighbours = {}
     for user_index in unique_users:
@@ -135,7 +135,7 @@ else:
 
 
 if os.path.isfile('../Data/cosine_for_similar_users.npy'):
-    cosine_numbers = np.load('Data/cosine_for_similar_users_1.npy').item()
+    cosine_numbers = np.load('../Data/cosine_for_similar_users_1.npy').item()
 else:
     cosine_numbers = {}
     for user in user_neighbours:
