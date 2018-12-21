@@ -16,7 +16,7 @@
 
 ## Parameter Tuning and Optimal Model 
 
-![train-validaton-curve](fig/fig11.png)
+![train-validaton-curve](fig/fig10.png){:height="24px" width="48px"}
 
 
 ## Model Results and Explainability
@@ -25,7 +25,6 @@
 ![sample](fig/fig7.png)
 ![sample](fig/fig8.png)
 ![sample](fig/fig9.png)
-![sample](fig/fig10.png)
 
 [Code](visualising_embeddings.ipynb)
 
