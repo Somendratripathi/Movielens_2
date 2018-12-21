@@ -5,7 +5,7 @@ import random
 Splitting the data in a 80:20 ratio
 '''
 
-ratio = 0.8
+ratio = 0.1
 path = 'Data/ratings.csv'
 
 df = pd.read_csv(path)
@@ -19,7 +19,7 @@ train = df.iloc[randomList]
 other_indices = df.index.isin(randomList)
 test = df[~other_indices]
 
-train.to_csv('Data/train.csv', index=False)
-test.to_csv('Data/test.csv', index=False)
+train.to_csv('Data/train_small.csv', index=False)
+test.to_csv('Data/test_small.csv', index=False)
 
 
