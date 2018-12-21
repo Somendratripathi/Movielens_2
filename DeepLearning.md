@@ -1,4 +1,4 @@
-# Model 3 : Deep Learning Method to learn User and Movie Embeddings
+# Model 3 : Deep Learning to learn User and Movie Embeddings
 
 ### Model Description
 - 
