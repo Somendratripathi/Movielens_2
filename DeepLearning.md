@@ -2,7 +2,7 @@
 
 ### Model Description
 
-![model-str](fig/fig13.png = 250x250)
+<img src="https://user-images.githubusercontent.com/16842872/50356721-169bc600-0579-11e9-9560-8534c3f58aaa.png" width="400" height="790">
 
 - 
 
@@ -13,6 +13,7 @@
 - Movie & User Embedding Size
 - 
 
+
 [Code](training_embeddings.ipynb)
 
 ## Design Choices to consider
@@ -20,15 +21,15 @@
 
 ## Parameter Tuning and Optimal Model 
 
-![train-validaton-curve](fig/fig10.png)
+<img src="https://user-images.githubusercontent.com/16842872/50356770-4cd94580-0579-11e9-9f84-69bcaf04e65d.png" width="400" height="790">
 
 
 ## Model Results and Explainability
 
-![sample](fig/fig6.png)
-![sample](fig/fig7.png)
-![sample](fig/fig8.png)
-![sample](fig/fig9.png)
+<img src="https://user-images.githubusercontent.com/16842872/50356831-a04b9380-0579-11e9-855c-2d5e85b56c89.png" width="400" height="790">
+<img src="https://user-images.githubusercontent.com/16842872/50356832-a04b9380-0579-11e9-8230-e092e01a26fb.png" width="400" height="790">
+<img src="https://user-images.githubusercontent.com/16842872/50356833-a0e42a00-0579-11e9-9bc0-16a2ba957201.png" width="400" height="790">
+<img src="https://user-images.githubusercontent.com/16842872/50356834-a0e42a00-0579-11e9-91e1-3385cd4ead5b.png" width="400" height="790">
 
 [Code](visualising_embeddings.ipynb)
 
