@@ -1,11 +1,14 @@
 # Final project : Recommending the next best movie" 
+
 **Course:** E4571 Personalisation Theory, Fall 2018, Columbia University
+
 **Instructor:** Prof. Brett Vintch
+
 **Team Members:** Ashwin Jayaraman, Somendra Tripathi, Akhil Punia
 
 ## About the Movie Lens Data Set
 
-Full: 27,000,000 ratings and 1,100,000 tag applications applied to 58,000 movies by 280,000 users. Includes tag genome data with 14 million relevance scores across 1,100 tags. Last updated 9/2018. [Link] (http://grouplens.org/datasets/movielens/latest/)
+Full: 27,000,000 ratings and 1,100,000 tag applications applied to 58,000 movies by 280,000 users. Includes tag genome data with 14 million relevance scores across 1,100 tags. Last updated 9/2018. [Link](http://grouplens.org/datasets/movielens/latest/)
 
 ![fig1](fig/fig11.png)
 ![fig2](fig/fig12.png)
