@@ -1,4 +1,4 @@
-# Final project : Recommending the next best movie" 
+# Final project : Recommending the next best movie
 
 **Course:** E4571 Personalisation Theory, Fall 2018, Columbia University
 
@@ -58,17 +58,21 @@ The objective then is to identify what number of active users on platforms shoul
 In easy terms, this task can be be simply understood as making Top 5 recommendations to a carefully selected subset of registered users.
 
 ### Challenges
-- Sparsity
-
-- Size of the DataSet
+- Sparsity 
 
 - Outliers
-We would want to target our recommender system to 
-
+ 
+ 
 - Model Explainability and User Trust
+
 Using collaborative filtering models
 
 - Serendipity
+
+How to not just recommend popular items? In Top K recommendations we ca try adding new item
+
+- Cold Start Problem
+New user s
 
 ## Approaches
 - [Approximate Nearest Neighbors (ANN) using Locality Sensitive Hashing (LSH)](ANN.md)
