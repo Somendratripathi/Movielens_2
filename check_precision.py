@@ -1,12 +1,8 @@
 import numpy as np
 import findspark
 import collections
-from collections import ChainMap
-from functools import reduce
-import pandas as pd
-import time
 import math
-
+import pickle
 
 findspark.init()
 from pyspark import SparkContext,SparkConf
@@ -106,8 +102,6 @@ user_movies = data.map(lambda x: (x[0], (x[1], x[2]))).groupByKey()\
 movies = data.map(lambda x: (int(x[1]), 1)).groupByKey().sortByKey().map(lambda x: x[0]).collect()
 users = data.map(lambda x: (int(x[0]), 1)).groupByKey().sortByKey().map(lambda x: x[0]).collect()
 
-print(movies)
-print(len(movies))
 
 # FOr each movie, seeing which user has seen the movie
 movies_dictionary = collections.OrderedDict()
@@ -118,109 +112,68 @@ for movie in movies:
 matrix = np.array([movies_dictionary[movie] for movie in movies])
 
 # For each movie, computing the hash value for that
-number_of_hash_functions = 126
-number_of_bands = 42
-threshold = 0.05
-
-hash_fns = []
-
-t1 = time.time()
-for i in range(number_of_hash_functions):
-    np.random.seed(i)
-    a = np.random.randint(0, 1000)
-    b = np.random.randint(0, 1000)
-    hash_fns.append(hash_function(movies, a, b, len(movies)))
-
-hash_fns = np.array(hash_fns)
-hash_fns = hash_fns.T
-
-print(hash_fns.shape)
-
-
-# Now for the user item matrix, creating the signature matrix
-
-
-sig_matrix = signature_matrix(matrix, hash_fns, users)
-
-print(sig_matrix.shape)
-
-# print(sig_matrix)
-
-
-sig_matrix_list = sig_matrix.tolist()
-
-print(len(sig_matrix_list[0]), len(sig_matrix_list))
-
-
-sig_matrix = sc.parallelize(sig_matrix_list, number_of_bands)
-
-find_users = sig_matrix.mapPartitions(lambda x: get_similar_users(x, users))\
-    .groupByKey().map(lambda x: (x[0], (list(set([item for sublist in x[1] for item in sublist]))))).sortByKey()
-
-print(find_users.take(20))
-print(len(find_users.collect()))
-
-similarity_scores = find_users.map(lambda x: jaccard_similarity(x[0], x[1], user_movies))\
-    .flatMap(lambda x: x)
-
-t2 = time.time()
-
-print(similarity_scores.take(20))
-
-similarity_scores = similarity_scores.filter(lambda x: x[1] > threshold)\
-    .map(lambda x: (x[0][0], [(x[0][1],x[1])])).groupByKey().map(lambda x: (x[0], list(x[1])))\
-    .map(lambda x: (x[0], dict([y[0] for y in x[1]]))).sortByKey()
-
-print(similarity_scores.take(20))
-
-output_scores = similarity_scores.collectAsMap()
-
-print(output_scores[1])
+number_of_hash_functions = [1, 2, 4, 10, 20, 60, 120]
+number_of_bands = [1, 2, 4, 10, 20, 40]
+movie_to_recommend_level = [3, 3.5, 4, 4.5]
+threshold = [0.05, 0.1]
 
 test_path = 'Data/test.csv'
 test_data = sc.textFile(test_path)
 header = test_data.first()
 
-test_data = test_data.filter(lambda x: x != header).map(lambda x: x.split(",")[:-1])\
-    .map(lambda x: (int(x[0]), int(x[1]), float(x[2])))
+accuracy_list = []
 
-count = len(test_data.collect())
+for n in number_of_hash_functions:
+    for m in number_of_bands:
+        if m <= n:
+            print(n,m)
+            hash_fns = []
+            for i in range(n):
+                np.random.seed(i)
+                a = np.random.randint(0, 1000)
+                b = np.random.randint(0, 1000)
+                hash_fns.append(hash_function(movies, a, b, len(movies)))
 
-test_data_prediction = test_data.map(lambda x: predict(x[0], x[1],
-                                                       user_mean_rating, output_scores, user_movies))
+            hash_fns = np.array(hash_fns)
+            hash_fns = hash_fns.T
+            sig_matrix = signature_matrix(matrix, hash_fns, users)
+            sig_matrix_list = sig_matrix.tolist()
+            sig_matrix = sc.parallelize(sig_matrix_list, m)
+            find_users = sig_matrix.mapPartitions(lambda x: get_similar_users(x, users))\
+                .groupByKey().map(lambda x: (x[0], (list(set([item for sublist in x[1] for item in sublist]))))).sortByKey()
+            similarity_scores = find_users.map(lambda x: jaccard_similarity(x[0], x[1], user_movies))\
+                .flatMap(lambda x: x)
+            for t in threshold:
+                print(t)
+                similarity_scores_new = similarity_scores.filter(lambda x: x[1] > t)\
+                    .map(lambda x: (x[0][0], [(x[0][1],x[1])])).groupByKey().map(lambda x: (x[0], list(x[1])))\
+                    .map(lambda x: (x[0], dict([y[0] for y in x[1]]))).sortByKey()
+                output_scores = similarity_scores_new.collectAsMap()
 
+                test_data_new = test_data.filter(lambda x: x != header).map(lambda x: x.split(",")[:-1])\
+                    .map(lambda x: (int(x[0]), int(x[1]), float(x[2])))
 
-test_data_actual = test_data.map(lambda x: x[2]).collect()
+                count = len(test_data_new.collect())
 
-issues_with_data = np.sum(test_data_prediction.map(lambda x: x[1]).collect())
+                test_data_prediction = test_data_new.map(lambda x: predict(x[0], x[1],
+                                                                       user_mean_rating, output_scores, user_movies))
+                test_data_actual = test_data_new.map(lambda x: x[2]).collect()
 
-test_data_prediction = test_data_prediction.map(lambda x: x[0]).collect()
+                issues_with_data = np.sum(test_data_prediction.map(lambda x: x[1]).collect())
 
-print(issues_with_data/count)
-# print(test_data_prediction)
-# print(test_data_actual)
+                test_data_prediction = test_data_prediction.map(lambda x: x[0]).collect()
 
+                error = rmse(test_data_prediction, test_data_actual)
+                for r in movie_to_recommend_level:
+                    test_data_predicted_recommending = [x >= r for x in test_data_prediction]
 
-print(rmse(test_data_prediction, test_data_actual))
+                    test_data_actual_recommending = [x >= r for x in test_data_actual]
 
-movie_to_recommend_level = 3.5
+                    p = precision(test_data_actual_recommending, test_data_predicted_recommending)
+                    print((n, m, t, r, error, p))
 
-# I will define Precision as the number of movies which were above a threshold in the testdata
-# and how many of them were we able to accurately capture
+                    accuracy_list += [(n, m, t, r, error, p)]
 
-# I will test the model for all values above the threshold rather than top K since choosing K items might be tough if
-# we have more no of choices. We don't want to penalize the model if it correctly captured both. Choosing the K
-# can be done randomly
-
-
-test_data_predicted_recommending = [x >= movie_to_recommend_level for x in test_data_prediction]
-test_data_actual_recommending = [x >= movie_to_recommend_level for x in test_data_actual]
-
-
-print(precision(test_data_actual_recommending, test_data_predicted_recommending))
-
-
-
-
-
-
+print(accuracy_list)
+with open("Data/accuracy.txt", "wb") as f:
+    pickle.dump(accuracy_list, f)
