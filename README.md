@@ -1,8 +1,8 @@
-"Final project : Recommending the next best movie" 
+# Final project : Recommending the next best movie" 
 
-Team Members: Ashwin Jayaraman, Somendra Tripathi, Akhil Punia
+**Team Members:** Ashwin Jayaraman, Somendra Tripathi, Akhil Punia
 
-# About the Movie Lens Data Set
+## About the Movie Lens Data Set
 
 ![fig1](fig/fig11.png)
 ![fig2](fig/fig12.png)
@@ -24,16 +24,15 @@ Team Members: Ashwin Jayaraman, Somendra Tripathi, Akhil Punia
 
 - 
 
-# Approaches
+## Approaches
 - [Approximate Nearest Neighbors (ANN) using Locality Sensitive Hashing (LSH)](ANN.md)
 - Factorization Machines
 - [Deep Learning Approaches: Autoencoders and Learning Embeddings through Shallow Networks](DeepLearning.md)
 
-# Discussion on Results
+# Summary
 - Metrics
   - Quantitaive ( Accuracy, RMSE )
   - Qualitative ( Top K Recommendations )
-- 
 
 - Why do Autoencoders don't work ?
   - Cannot distinguish between a bad rating and a sparse data
