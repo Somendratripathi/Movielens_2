@@ -70,8 +70,7 @@ def rmse(x,y):
     return math.sqrt(np.sum(z)/len(z))
 
 
-
-train_path = 'Data/train.csv'
+train_path = '../Data/train.csv'
 data = pd.read_csv(train_path)
 
 
@@ -92,9 +91,9 @@ for movie in unique_movies:
     movies_users[movie] = users_seeing_movie
 
 
-number_of_hash_functions = 150
-number_of_bands = 50
-threshold = 20/50
+number_of_hash_functions = 60
+number_of_bands = 20
+threshold = 10/20
 
 '''
 Now we need to generate a,b that would out hash functions. We are defining 60 hash functions
@@ -124,7 +123,7 @@ for index, hash_value in enumerate(hash_values):
         matrix[index][user-1] = min_value
 
 
-if os.path.isfile('Data/similar_users_1.npy'):
+if os.path.isfile('../Data/similar_users.npy'):
     user_neighbours = np.load('Data/similar_users_1.npy').item()
 else:
     user_neighbours = {}
@@ -132,10 +131,10 @@ else:
         print(user_index)
         user_neighbours[user_index] = neighbours_of_user(user_index, matrix, number_of_bands, threshold, user_neighbours)
 
-    np.save('Data/similar_users_1.npy', user_neighbours)
+    np.save('../Data/similar_users_1.npy', user_neighbours)
 
 
-if os.path.isfile('Data/cosine_for_similar_users_1.npy'):
+if os.path.isfile('../Data/cosine_for_similar_users.npy'):
     cosine_numbers = np.load('Data/cosine_for_similar_users_1.npy').item()
 else:
     cosine_numbers = {}
@@ -147,10 +146,10 @@ else:
                 cosine_numbers[user][similar_user] = cosine_numbers[similar_user][user]
             else:
                 cosine_numbers[user][similar_user] = cosine_similarity(user, similar_user, user_movies)
-    np.save('Data/cosine_for_similar_users_1.npy', cosine_numbers)
+    np.save('../Data/cosine_for_similar_users_1.npy', cosine_numbers)
 
 
-test_data = pd.read_csv('Data/test.csv')
+test_data = pd.read_csv('../Data/test.csv')
 
 
 predicted_values = map(lambda x, y: predict_rating(x, y, cosine_numbers, movies_users, user_neighbours, user_movies),
@@ -162,31 +161,3 @@ dumb_values = map(lambda x: dumb(x), test_data['UserID'])
 
 print(rmse(list(predicted_values), list(test_data['Rating'])))
 print(rmse(list(dumb_values), list(test_data['Rating'])))
-
-
-# config = SparkConf().setAppName("LSH")
-#
-# sc = SparkContext(conf=config)
-#
-#
-# train_path = 'Data/train.csv'
-#
-#
-# data = sc.textFile(train_path)
-# header = data.first()
-
-'''
-For us, the movies the user has seen is the items
-
-So we need to identify which movies have been seen by the user
-
-'''
-
-
-# users = data.filter(lambda x: x!=header).map(lambda line: line.split(","))\
-#     .map(lambda token: (int(token[0]),int(token[1]),float(token[2]))).groupBy(lambda line: line[0])\
-#     .map(lambda x: list(x[1]))
-#
-#
-#
-# print(users.first())
