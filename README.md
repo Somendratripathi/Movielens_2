@@ -75,12 +75,18 @@ Factorization Machines gives us the importance of the coefficiants and we can ex
 We have created different types of models in Factorization Machines. The weight for these movies allows us to recommed certain type of novelties
 
 #### **Cold Start Problem**
-New user would be asked to provide us a choice of certain movies that they like. Based on those movies, we would autoencode those movies and find similar movies near that cohort. Once we have learnt a bit about the user, we can then use Factorization Machines and Nearest Neighbours to generate predictions
+New users would be asked to provide us a choice of certain movies that they like. Based on those movies, we would autoencode those movies and find similar movies near that cohort. Once we have learnt a bit about the user, we can then use Factorization Machines and Nearest Neighbours to generate predictions
 
-## Approaches
+For new movies, through our autoencoders, we would be able to determine similar movies and also the users who have watched those movies. Based on that, we would start recommending the movies. Once enough users have seen the movie, we can use the other 2 models as well to determine the recommendations
+
+## Models
 - [Approximate Nearest Neighbors (ANN) using Locality Sensitive Hashing (LSH)](ANN.md)
 - Factorization Machines
 - [Deep Learning Approaches: Autoencoders and Learning Embeddings through Shallow Networks](DeepLearning.md)
+
+Each of the above 3 models are used for certain purposes. Autoencoders and Embeddings will be used to recommed to new users for whom we do not have enough data. Once the user reaches the threshold after which we are confident, we would show the users recommendations from all 3 models. Depending on the feedback we recieve, we can assign weights to the 3 models. Due to the weights, the number of movies recommeded by a particular model would be more as compared with the other models.
+
+Each week, we hope to retrain these models to update for the newly generated data. The frequency will be decided upon by the business owners but we feel training wekkly should be useful for now. 
 
 ## Summary
 - Metrics
