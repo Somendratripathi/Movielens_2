@@ -2,7 +2,7 @@
 
 ### Model Description
 
-![model-str](fig/fig13.png)
+![model-str](fig/fig13.png = 250x250)
 
 - 
 
