@@ -2,7 +2,7 @@
 
 ### Model Description
 
-<img src="https://user-images.githubusercontent.com/16842872/50356721-169bc600-0579-11e9-9560-8534c3f58aaa.png" width="800" height="400">
+<img src="https://user-images.githubusercontent.com/16842872/50356721-169bc600-0579-11e9-9560-8534c3f58aaa.png" width="600" height="300">
 
 - 
 
@@ -21,7 +21,7 @@
 
 ## Parameter Tuning and Optimal Model 
 
-<img src="https://user-images.githubusercontent.com/16842872/50356770-4cd94580-0579-11e9-9f84-69bcaf04e65d.png" width="600" height="300">
+<img src="https://user-images.githubusercontent.com/16842872/50356770-4cd94580-0579-11e9-9f84-69bcaf04e65d.png" width="800" height="400">
 
 
 ## Model Results and Explainability
