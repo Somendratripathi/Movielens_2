@@ -1,13 +1,17 @@
 # Model 3 : Deep Learning to learn User and Movie Embeddings
 
 ### Model Description
+
+![model-str](fig/fig13.png)
+
 - 
 
 ### Description of the Algorithm 
 - 
 
 ## Parameters of the Model
--
+- Movie & User Embedding Size
+- 
 
 [Code](training_embeddings.ipynb)
 
