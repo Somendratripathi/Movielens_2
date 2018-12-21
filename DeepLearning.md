@@ -21,12 +21,12 @@
 
 ## Parameter Tuning and Optimal Model 
 
-<img src="https://user-images.githubusercontent.com/16842872/50356770-4cd94580-0579-11e9-9f84-69bcaf04e65d.png" width="800" height="400">
+<img src="https://user-images.githubusercontent.com/16842872/50356770-4cd94580-0579-11e9-9f84-69bcaf04e65d.png" width="600" height="300">
 
 
 ## Model Results and Explainability
 
-<img src="https://user-images.githubusercontent.com/16842872/50356831-a04b9380-0579-11e9-855c-2d5e85b56c89.png" width="800" height="400">
+<img src="https://user-images.githubusercontent.com/16842872/50356831-a04b9380-0579-11e9-855c-2d5e85b56c89.png" width="800" height="600">
 <img src="https://user-images.githubusercontent.com/16842872/50356832-a04b9380-0579-11e9-8230-e092e01a26fb.png" width="800" height="400">
 <img src="https://user-images.githubusercontent.com/16842872/50356833-a0e42a00-0579-11e9-9bc0-16a2ba957201.png" width="800" height="400">
 <img src="https://user-images.githubusercontent.com/16842872/50356834-a0e42a00-0579-11e9-91e1-3385cd4ead5b.png" width="800" height="400">
