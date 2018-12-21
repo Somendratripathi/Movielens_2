@@ -43,6 +43,18 @@ Code for EDA is available [here](eda.ipynb).
 
 ## Business Problem
 
+For the purposes of this project, we regard ourselves as a movie recommendation and review website which prides itself with quality recommendations that it is able to generate for its registered users.
+Our business model is built around selling our customers digital content (like Itunes) and recommending them to subscription services to go and watch their favorite movies. Another part of our job is to engage users on our platform, so that they actively use it to review new movies. It is extremely important to us as it will ensure that we continuously build a growing repository of data that is both rich ( both in quality and quantity ) and relevant with changing time.
+Two way we supply these recommendations:
+- Display top recommeded movies on our website dashboard.
+- Sending out emails to registered users with relevant recommednations to keep them engaged with our platform.
+### TLDR
+**Maximize:** Online Purchases and Website Engagement
+**Avoid:** Becoming a Spammer. Focus on Quality Recommendations.
+
+The objective then is to identify what number of active users on platforms should be targeted and with what frequency.
+In easy terms, this task can be be simply understood as making Top 5 recommendations to a carefully selected subset of registered users.
+
 ### Challenges
 - Sparsity
 
