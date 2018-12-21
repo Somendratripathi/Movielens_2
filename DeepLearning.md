@@ -11,7 +11,8 @@
 
 ## Parameters of the Model
 - Movie & User Embedding Size
-- 
+- Learning Rate
+- Optimisation Function
 
 
 [Code](training_embeddings.ipynb)
