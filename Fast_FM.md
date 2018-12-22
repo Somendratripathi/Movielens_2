@@ -24,10 +24,11 @@ __libffm__ format :
 <label> <field1>:<feature1>:<value1> <field2>:<feature2>:<value2>
 ```
 
-This needs dataset specific transformations which require extensive quality checks. However, even after several iterations and paramter tuning we could only achieve the best RMSE of 0.98, here is the FM model built using xlearn[Xlearn_FM_nb](https://github.com/Somendratripathi/Movielens_2/blob/master/Movielens_FM_v3.ipynb)
+This needs dataset specific transformations which require extensive quality checks. However, even after several iterations and paramter tuning we could only achieve the best RMSE of 0.98, here is the FM model built using xlearn [Xlearn_FM_nb](https://github.com/Somendratripathi/Movielens_2/blob/master/Movielens_FM_v3.ipynb)
 
 
 #### Package 2 : FastFM
+
 
 
 ### Comparison of the different models built
