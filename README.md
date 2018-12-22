@@ -87,16 +87,3 @@ For new movies, through our autoencoders, we would be able to determine similar 
 Each of the above 3 models are used for certain purposes. Embeddings will be used to recommed to new users for whom we do not have enough data. Once the user reaches the threshold after which we are confident, we would show the users recommendations from all 3 models. Depending on the feedback we recieve, we can assign weights to the 3 models. Due to the weights, the number of movies recommeded by a particular model would be more as compared with the other models.
 
 Each week, we hope to retrain these models to update for the newly generated data. The frequency will be decided upon by the business owners but we feel training wekkly should be useful for now. 
-
-## Summary
-- Metrics
-  - Quantitaive ( Accuracy, RMSE )
-  - Qualitative ( Top K Recommendations )
-
-- Why do Autoencoders don't work ?
-  - Cannot distinguish between a bad rating and a sparse data
-  - Needs large GPU resources to train on the movielens data
-  - Future: Might Have to look into Sparse Autoencoders, or frameworks like Amzon DSSTNE
-- Embeddings
-  - Do a good job at obtaining a latent space representation of movies.
-  - can be visualised using TSNE.
