@@ -1,6 +1,7 @@
 
 Factorization machines help in bringing in contextual information into the prediction task, for example, bringing in the context (user A, movie : robomax, time : 12 AM, rating : 3.5), FM can tell how a user would rate a movie at 12 AM versus the same movie being watched in the evening. FMs do this by learning latent vectors for each of the features, which is equivalent to each feature getting transformed to a space where similar features are embedded near one another.
 
+Key attributes of FMs:
 * Can help incorporate feature engineering.
 * Work well on really sparse datasets where other conceptually similar techniques like logistic regression would fail.
 * Large classes of models like SVD, SVD++ can be described as special cases of factorization machines.
