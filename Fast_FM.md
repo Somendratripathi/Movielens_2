@@ -7,9 +7,15 @@ Matrix Factorization - drawbacks
 
 ### What are Factorization machines?
 
-### Methodolgy in this exploratory project
+### Methodolgy
+
+
 
 ### Comparison of the different models built
+
+
+
+
 
 ### Paramters used in the model
 * rank : The rank of the factorization used for the second order interactions
@@ -18,6 +24,11 @@ Matrix Factorization - drawbacks
 
 
 ### Future Tasks
+* Engineer addition features like last movie rated, number of days since first  rated movie, movie tags, addition info imdb, wikipedia
+* test separate regularization parameters for second order and first order terms
+* increase the range of hyperspace used for parameter training
+* A/B test the three approaches discussed
+
 
 
 ### Requirements 
