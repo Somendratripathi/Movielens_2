@@ -5,8 +5,9 @@
 The idea here is to implement a simple matrix factorisation model using deep learning framework. We have chosen a simple model we specify an 8 dimensional embedding layer for user items and movies. These layers are intialised to  a set of random values. 
 Next step in our model is to take the dot product of these two layers. It thus helps us reconstruct the ratings for every user for every movie.
 
+<p align="center">
 <img src="https://user-images.githubusercontent.com/16842872/50356721-169bc600-0579-11e9-9560-8534c3f58aaa.png" width="600" height="300">
-
+</p>
 
 
 ### Description of the Algorithm 
@@ -33,11 +34,13 @@ Next step in our model is to take the dot product of these two layers. It thus h
 
 ## Model Results and Explainability
 
-Once the model is trained we can explore the learnt embeddings as follows. We know that each movie is represented by a 8 dimensional vector. We can compute the network simialrity to fnid out the nearest movie to a querried movie. In the code file, I have shown how we can use euclidean and cosine distance for cimputing this metric.
+Once the model is trained we can explore the learnt embeddings as follows. We know that each movie is represented by a 8 dimensional vector. We can compute the network simialrity to fnid out the nearest movie to a querried movie. In the code file, I have shown how we can use euclidean and cosine distance for computing this metric.
 
 <img src="https://user-images.githubusercontent.com/16842872/50356831-a04b9380-0579-11e9-855c-2d5e85b56c89.png" width="900" height="600">
 
-> **Observations:** 
+We see the Mean Absolute Error of the above model decreases with ever increasing epoch but the validation set stops improving after 4 epochs. It indicates that a model which avoids overfitting can be fitted very easily. 
+
+> **Qualitative Results:** 
 In general, we see that embeddings have done a good job at identifying the similarities between movies.
 - Querrying Star Wars identifies all the movies in Sci-Fi and Fantasy genre. It interestingly also suggests its sequels too.
 - The Mask correctly brings out all the comedy movies together. Thus, doing a good job at identifying the genre.
@@ -46,10 +49,22 @@ In general, we see that embeddings have done a good job at identifying the simil
 - American Sniper fetches an interesting recommendation 'We were Soldiers!', identifying the theme of war and soldiers.
 
 <img src="https://user-images.githubusercontent.com/16842872/50356832-a04b9380-0579-11e9-8230-e092e01a26fb.png" width="900" height="500">
+
+We have applied TSNE to visualise theses 8 dimesnional movie vectors in 2D. it provides us with an insight as to how how are different movies clustered in the two dimensional space.
+
+```python
+from sklearn.manifold import TSNE
+tsne = TSNE(random_state=1, n_iter=15000, metric="cosine")
+embs = tsne.fit_transform(w)
+```
 <img src="https://user-images.githubusercontent.com/16842872/50356833-a0e42a00-0579-11e9-9bc0-16a2ba957201.png" width="900" height="500">
+
 <img src="https://user-images.githubusercontent.com/16842872/50356834-a0e42a00-0579-11e9-91e1-3385cd4ead5b.png" width="900" height="500">
 
 [Code](visualising_embeddings.ipynb)
+
+## Concluding Remarks
+Given the effectiveness of our model to correctly cluster movies with relevant genrres and popularity. We feel that this model can be used to successfully generate recommendation for a new set of users for whom we do not have much information to 
 
 ## Requirements
 ```
