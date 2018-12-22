@@ -110,9 +110,14 @@ One hot encoding of additional features led to a sparse matrix with upto 13,000 
 Additional features lowered the best model RMSE from 0.8656 to 0.85402, however require larger number of iterations to reach the minima
 ![text](Fast_FM_files/Fast_FM_45_1.png)
 
+### Performance of FM with different subsets of user and items (*of the form atmost x*)
+#### User subsets
+![text](Fast_FM_files/atmostxusers.png)
+
+#### Item subsets
+![text](Fast_FM_files/atmostxitems.png)
 
 ### Evaluation of model performance as a function of number of latent features
-
 Once we tuned an FM on the ratings matrix, the next step was to evaluate the impact of having varying (k) latent feature vectors and its affect on RMSE of train and CV. Clearly, it led to overfitting.
 
 ![text](Fast_FM_files/Fast_FM_58_1.png)
