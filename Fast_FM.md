@@ -37,7 +37,9 @@ The FM evaluation using FastFM was done from three different angles.
 2. Training FM on few users per movie (starting from **atmost** 1 user/movie, 5 users/ movie, 25, 125, 625, all
 3. And finally training FM on few to many movie rated per user (starting from **atmost** 1 movie / user,  2, 4, 16, 32 and all
 
-This process was repeated for training FM with additional features.
+For each of the models in 1,2, & 3 several combination of hyparamters were used to tune the model and the one with the best CV was reported.
+
+This process was repeated for training FM with **additional features**.
 
 ##### Additional features used
 
