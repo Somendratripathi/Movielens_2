@@ -12,7 +12,9 @@ Matrix Factorization - drawbacks
 ### Comparison of the different models built
 
 ### Paramters used in the model
-
+* rank : The rank of the factorization used for the second order interactions
+* epochs : The number or iterations over the training set for ALS.
+* l2_reg : L2 penalty weight for all coefficients (default=0).
 
 
 ### Future Tasks
