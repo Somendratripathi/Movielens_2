@@ -52,7 +52,7 @@ In general, we see that embeddings have done a good job at identifying the simil
 - Inception querries surprisingly bring out all the movies from the same director- Christophr Nolan.
 - American Sniper fetches an interesting recommendation 'We were Soldiers!', identifying the theme of war and soldiers.
 
-<img src="https://user-images.githubusercontent.com/16842872/50356832-a04b9380-0579-11e9-8230-e092e01a26fb.png" width="900" height="500">
+## TSNE
 
 We have also applied TSNE to visualise theses 8 dimensional movie embeddings in 2D. It provides us with an insight as to how how are different movies clustered in the two dimensional space and provides a window towards model explainability.
 
@@ -61,14 +61,19 @@ from sklearn.manifold import TSNE
 tsne = TSNE(random_state=1, n_iter=15000, metric="cosine")
 embs = tsne.fit_transform(w)
 ```
+
+<img src="https://user-images.githubusercontent.com/16842872/50356832-a04b9380-0579-11e9-8230-e092e01a26fb.png" width="900" height="500">
+The location of movie **Iron Man** is visualised in the embedding space.
+
 <img src="https://user-images.githubusercontent.com/16842872/50356833-a0e42a00-0579-11e9-9bc0-16a2ba957201.png" width="900" height="500">
+The neighborhood of movie embeddings around the movie **Iron Man.**
 
 <img src="https://user-images.githubusercontent.com/16842872/50356834-a0e42a00-0579-11e9-91e1-3385cd4ead5b.png" width="900" height="500">
-
+The neighborhood of movie embeddings around the movie **The Mask.**
 
 
 ## Concluding Remarks
-Given the effectiveness of our model to correctly cluster movies with relevant genrres and popularity. We feel that this model can be used to successfully generate recommendation for a new set of users for whom we do not have much information for. This approach provides us with a undestnding as to how our model is 
+Given the effectiveness of our model to correctly cluster movies with relevant genrres and popularity. We feel that this model can be used to successfully generate recommendation for a new set of users for whom we do not have much information.
 
 ## Requirements
 ```
