@@ -31,8 +31,11 @@ This needs dataset specific transformations which require extensive quality chec
 
 
 
-### Comparison of the different models built
+### Evaluation of model performance and number of latent features
 
+Once we tuned an FM on the ratings matrix, the next step was to evaluate the impact of having varying (k) latent feature vectors and its affect on RMSE of train and CV. Clearly, it led to overfitting.
+
+![text](Fast_FM_files/Fast_FM_58_1.png)
 
 
 
