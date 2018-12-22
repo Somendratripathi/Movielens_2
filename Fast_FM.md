@@ -1,11 +1,8 @@
 
-### Background : A matrix factorization based model on Movielens-1M
-
-What we accomplished in the previous project in HW2?
-
-Matrix Factorization - drawbacks
-
 ### What are Factorization machines?
+
+
+In this task we used xlearn to train field-aware FMs(which didn't lead to good results) and FMs using FastFM. 
 
 ### Methodolgy
 
@@ -29,9 +26,77 @@ This needs dataset specific transformations which require extensive quality chec
 
 #### Package 2 : FastFM
 
+The FM evaluation using FastFM was done from three different angles.
+1. Training models on extremely sparse to dense data sets
+2. Training FM on few users per movie (starting from **atmost** 1 user/movie, 5 users/ movie, 25, 125, 625, all
+3. And finally training FM on few to many movie rated per user (starting from **atmost** 1 movie / user,  2, 4, 16, 32 and all
+
+This process was repeated for training FM with additional features.
+
+##### Additional features used
+
+The following features were one-hot encoded and fed to the FastFM function.
+
+- Year of the movie 
+
+- Gender is denoted by a "M" for male and "F" for female
+- Age is chosen from the following ranges:
+
+	*  1:  "Under 18"
+	* 18:  "18-24"
+	* 25:  "25-34"
+	* 35:  "35-44"
+	* 45:  "45-49"
+	* 50:  "50-55"
+	* 56:  "56+"
+
+- Occupation is chosen from the following choices:
+
+	*  0:  "other" or not specified
+	*  1:  "academic/educator"
+	*  2:  "artist"
+	*  3:  "clerical/admin"
+	*  4:  "college/grad student"
+	*  5:  "customer service"
+	*  6:  "doctor/health care"
+	*  7:  "executive/managerial"
+	*  8:  "farmer"
+	*  9:  "homemaker"
+	* 10:  "K-12 student"
+	* 11:  "lawyer"
+	* 12:  "programmer"
+	* 13:  "retired"
+	* 14:  "sales/marketing"
+	* 15:  "scientist"
+	* 16:  "self-employed"
+	* 17:  "technician/engineer"
+	* 18:  "tradesman/craftsman"
+	* 19:  "unemployed"
+	* 20:  "writer"
+
+- Genres are pipe-separated and are selected from the following genres:
+
+	* Action
+	* Adventure
+	* Animation
+	* Children's
+	* Comedy
+	* Crime
+	* Documentary
+	* Drama
+	* Fantasy
+	* Film-Noir
+	* Horror
+	* Musical
+	* Mystery
+	* Romance
+	* Sci-Fi
+	* Thriller
+	* War
+	* Western
 
 
-### Evaluation of model performance and number of latent features
+### Evaluation of model performance as a function of number of latent features
 
 Once we tuned an FM on the ratings matrix, the next step was to evaluate the impact of having varying (k) latent feature vectors and its affect on RMSE of train and CV. Clearly, it led to overfitting.
 
@@ -57,10 +122,10 @@ Once we tuned an FM on the ratings matrix, the next step was to evaluate the imp
 
 ### Future Tasks
 * Engineer additional features like last movie rated, number of days since first  rated movie, movie tags, addition info imdb, wikipedia
+* Evaluate individual impact of each of the features that were added
 * test separate regularization parameters for second order and first order terms
 * increase the range of hyperspace used for parameter training
 * A/B test the three approaches discussed
-
 
 
 ### Requirements 
