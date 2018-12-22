@@ -59,32 +59,32 @@ In easy terms, this task can be be simply understood as making Top 5 recommendat
 
 ### Challenges
 #### **Sparsity**
-As we observe from the above exploratory analysis, we see that there are a lot of users and movies. Most users have not seen many of the movies making the item ratings matrix extremely sparse. We first create a subset of users who have seen at least a certain number of movies. This is useful for training the different types of models. Handling those users who have not seen a certain number of movies will be explained in detail under the cold start section. 
+As we observe from the above exploratory analysis, we see that there are a lot of users and movies. Most users have not seen many of the movies making the item ratings matrix extremely sparse. We first create a subset of users who have seen at least a certain number of movies. This is useful for training the different types of models. Handling those users who have not seen a certain number of movies is discussed under the cold start section. 
 
 #### **Outliers**
-Certain users have seen and rated a lot of movies. We believe that these users might be bots and are removed from the data. This was done to make our models more realistic and adapt to the real world. This is highlighted by the fact that the top 9863 users contribute to ratings for 9153392 movies. These users roughly rate 928.05 movies. 
+Certain users have seen and rated a lot of movies. We believe that these users might be bots and should be removed from the data. This was done to make our models more realistic and adapt to the real world. This is highlighted by the fact that the top 9863 users contribute to ratings for 9153392 movies. These users roughly rate 928.05 movies. 
  
 #### **Model Explainability and User Trust**
 Our business requirement is that we would want to engage our users. We believe explaining why a particular movie is recommended to the user would increase the engagement with the user and would increase the likelihood of the user watching the movie. 
 
-Using approximate nearest neighbours and Factorization Machines, we can explain the reason why a particular movie is being watched. Approximate nearest neighbours provides the similar users and we can recommend using the tagline "Users like you watched this"
+Using approximate nearest neighbours and Factorization Machines, we can explain the reason why a particular movie is being watched. Approximate nearest neighbours provides the similar users and we can recommend using the tagline "Users like you watched this".
 
-Factorization Machines gives us the importance of the coefficiants and we can explain why a particular movie is being recommended based on those values 
+Factorization Machines gives us the importance of the coefficiants and we can explain why a particular movie is being recommended based on those values .
 
 #### **Serendipity**
-We have created different types of models in Factorization Machines. The weight for these movies allows us to recommed certain type of novelties
+We have created different types of models in Factorization Machines. The weight for these movies allows us to recommed certain type of novelties.
 
 #### **Cold Start Problem**
 New users would be asked to provide us a choice of certain movies that they like. Based on those movies, we would autoencode those movies and find similar movies near that cohort. Once we have learnt a bit about the user, we can then use Factorization Machines and Nearest Neighbours to generate predictions
 
-For new movies, through our autoencoders, we would be able to determine similar movies and also the users who have watched those movies. Based on that, we would start recommending the movies. Once enough users have seen the movie, we can use the other 2 models as well to determine the recommendations
+For new movies, through our autoencoders, we would be able to determine similar movies and also the users who have watched those movies. Based on that, we would start recommending the movies. Once enough users have seen the movie, we can use the other 2 models as well to determine the recommendations.
 
 ## Models
 - [Approximate Nearest Neighbors (ANN) using Locality Sensitive Hashing (LSH)](ANN.md)
 - Factorization Machines
-- [Deep Learning Approaches: Autoencoders and Learning Embeddings through Shallow Networks](DeepLearning.md)
+- [Deep Learning Approaches: Learning Embeddings through Shallow Networks](DeepLearning.md)
 
-Each of the above 3 models are used for certain purposes. Autoencoders and Embeddings will be used to recommed to new users for whom we do not have enough data. Once the user reaches the threshold after which we are confident, we would show the users recommendations from all 3 models. Depending on the feedback we recieve, we can assign weights to the 3 models. Due to the weights, the number of movies recommeded by a particular model would be more as compared with the other models.
+Each of the above 3 models are used for certain purposes. Embeddings will be used to recommed to new users for whom we do not have enough data. Once the user reaches the threshold after which we are confident, we would show the users recommendations from all 3 models. Depending on the feedback we recieve, we can assign weights to the 3 models. Due to the weights, the number of movies recommeded by a particular model would be more as compared with the other models.
 
 Each week, we hope to retrain these models to update for the newly generated data. The frequency will be decided upon by the business owners but we feel training wekkly should be useful for now. 
 
