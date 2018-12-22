@@ -21,8 +21,14 @@ __libffm__ format :
 <label> <field1>:<feature1>:<value1> <field2>:<feature2>:<value2>
 ```
 
-This needs dataset specific transformations which require extensive quality checks. However, even after several iterations and paramter tuning we could only achieve the best RMSE of 0.98, here is the FM model built using xlearn [Xlearn_FM_nb](https://github.com/Somendratripathi/Movielens_2/blob/master/Movielens_FM_v3.ipynb)
+This needs dataset specific transformations which require extensive quality checks. However, even after several iterations and paramter tuning we could only achieve the best **RMSE of 0.98** which is worse than comparable algorithms like SVD or baseline, here is the FM model built using xlearn [Xlearn_FM_nb](https://github.com/Somendratripathi/Movielens_2/blob/master/Movielens_FM_v3.ipynb)
 
+|Movielens 1M |RMSE|MAE|
+|-------|------ |-------|
+|SVD	|0.873	|0.686	|
+|SVD++	|0.862	|0.673	|
+|Baseline|0.909	|0.719	|
+|Random	| 1.504|1.206	|
 
 #### Package 2 : FastFM
 
