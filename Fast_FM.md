@@ -9,9 +9,10 @@ Matrix Factorization - drawbacks
 
 ### Methodolgy
 
-#### How initial FM package we tried failed? 
+#### Package 1 : xlearn 
 
-##### Package 1 : xlearn 
+##### How initial FM package we tried failed?
+
 [xlearn](https://github.com/aksnzhy/xlearn) was initially used to test out both **FMs** and **Field aware FMs** on the movielens dataset as the package authors claim that it is as fast libffm and libfm. The package requires data to be input in __libsvm__ and __libffm__ formats.
 
 __libsvm__ format :
@@ -26,6 +27,7 @@ __libffm__ format :
 This needs dataset specific transformations which require extensive quality checks. However, even after several iterations and paramter tuning we could only achieve the best RMSE of 0.98, here is the FM model built using xlearn[Xlearn_FM_nb](https://github.com/Somendratripathi/Movielens_2/blob/master/Movielens_FM_v3.ipynb)
 
 
+#### Package 2 : FastFM
 
 
 ### Comparison of the different models built
@@ -42,7 +44,7 @@ This needs dataset specific transformations which require extensive quality chec
 * l2_reg : L2 penalty weight for all coefficients (default=0).
 
 **Xlearn**
-* k 
+* k - number of latent feature dimensions
 * epoch - For machine learning tasks, one epoch consists of one full training cycle on the training set
 * lambda - regularization
 * lr - learning rate
@@ -50,7 +52,7 @@ This needs dataset specific transformations which require extensive quality chec
 * metric - metric to optimize on RMSE, MAE etc.
 
 ### Future Tasks
-* Engineer addition features like last movie rated, number of days since first  rated movie, movie tags, addition info imdb, wikipedia
+* Engineer additional features like last movie rated, number of days since first  rated movie, movie tags, addition info imdb, wikipedia
 * test separate regularization parameters for second order and first order terms
 * increase the range of hyperspace used for parameter training
 * A/B test the three approaches discussed
