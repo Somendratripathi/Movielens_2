@@ -9,7 +9,17 @@ Matrix Factorization - drawbacks
 
 ### Methodolgy
 
+#### How initial FM package we tried failed? 
 
+[xlearn](https://github.com/aksnzhy/xlearn) was initially used to test out FM on the movielens dataset as the package authors claim that it is as fast libffm and libfm. The package requires data to be input in __libsvm__ and __libffm__ formats.
+
+__libsvm__ format :
+<label> <feature1>:<value1> <feature2>:<value2>
+
+__libffm__ format :
+<label> <field1>:<feature1>:<value1> <field2>:<feature2>:<value2>
+    
+This requires dataset specific transformations which require extensive quality checks. However, even after several iterations and paramter tuning we could only achieve the best RMSE of 0.98
 
 ### Comparison of the different models built
 
