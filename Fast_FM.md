@@ -11,7 +11,8 @@ Matrix Factorization - drawbacks
 
 #### How initial FM package we tried failed? 
 
-[xlearn](https://github.com/aksnzhy/xlearn) was initially used to test out FM on the movielens dataset as the package authors claim that it is as fast libffm and libfm. The package requires data to be input in __libsvm__ and __libffm__ formats.
+##### Package 1 : xlearn 
+[xlearn](https://github.com/aksnzhy/xlearn) was initially used to test out both **FMs** and **Field aware FMs** on the movielens dataset as the package authors claim that it is as fast libffm and libfm. The package requires data to be input in __libsvm__ and __libffm__ formats.
 
 __libsvm__ format :
 ```
@@ -22,7 +23,10 @@ __libffm__ format :
 <label> <field1>:<feature1>:<value1> <field2>:<feature2>:<value2>
 ```
 
-This requires dataset specific transformations which require extensive quality checks. However, even after several iterations and paramter tuning we could only achieve the best RMSE of 0.98
+This needs dataset specific transformations which require extensive quality checks. However, even after several iterations and paramter tuning we could only achieve the best RMSE of 0.98, here is the FM model built using xlearn[Xlearn_FM_nb](https://github.com/Somendratripathi/Movielens_2/blob/master/Movielens_FM_v3.ipynb)
+
+
+
 
 ### Comparison of the different models built
 
@@ -31,10 +35,19 @@ This requires dataset specific transformations which require extensive quality c
 
 
 ### Paramters used in the model
+
+**FastFM**
 * rank : The rank of the factorization used for the second order interactions
 * epochs : The number or iterations over the training set for ALS.
 * l2_reg : L2 penalty weight for all coefficients (default=0).
 
+**Xlearn**
+* k 
+* epoch - For machine learning tasks, one epoch consists of one full training cycle on the training set
+* lambda - regularization
+* lr - learning rate
+* optimizer - sgd, ftrl, adagrid
+* metric - metric to optimize on RMSE, MAE etc.
 
 ### Future Tasks
 * Engineer addition features like last movie rated, number of days since first  rated movie, movie tags, addition info imdb, wikipedia
@@ -47,7 +60,7 @@ This requires dataset specific transformations which require extensive quality c
 ### Requirements 
 ```
 Python version : 3.7
-OS :  Linux (Ubuntu 14.04 LTS) and OS X Mavericks (ONLY! for both xlearn and fastfm)
+OS :  Linux (Ubuntu 14.04 LTS) and OS X Mavericks (ONLY! both xlearn and fastfm only support these two OS)
 RAM : 8GB
 Free Space : 20GB
 ```
