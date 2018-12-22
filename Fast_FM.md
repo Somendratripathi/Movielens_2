@@ -13,13 +13,18 @@ Matrix Factorization - drawbacks
 
 ### Paramters used in the model
 
-### Requirements 
+
 
 ### Future Tasks
 
-### References
 
-
+### Requirements 
+```
+Python version : 3.7
+OS :  Linux (Ubuntu 14.04 LTS) and OS X Mavericks (ONLY! for both xlearn and fastfm)
+RAM : 8GB
+Free Space : 20GB
+```
 
 
 ### FastFM walkthrough
