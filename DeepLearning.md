@@ -13,8 +13,6 @@ Next step in our model is to take the dot product of these two layers. It thus h
 ### Description of the Algorithm 
 - In the first step we take the average rating across all users and subtract it from the individual ratings. The resultant column vector is chosen as our target variable. During the time of reconstruction, we can simply add this average rating to the reconstructed value to obtain the actual rating.
 - Model is trained using Adam Optimiser. It is an optimisation algoirhtm that can used instead of the classical stochastic gradient descent procedure to update network weights iterative based in training data.
-- 
-
 
 ## Parameters of the Model
 - Movie & User Embedding Size ( k =8 )
@@ -27,18 +25,24 @@ Next step in our model is to take the dot product of these two layers. It thus h
 [Code](training_embeddings.ipynb)
 
 ## Parameter Tuning and Optimal Model 
-- The value of k ( embedding size) is chosen to be 8 after making a tradeoff between training time and 
+- The value of k ( embedding size) is chosen to be 8 after making a tradeoff between training time and model size.
+- Higher values of k tend to provide low training error but no imporvement is observed in the validation set which makes us believe that our model maybe **Overfitting**.
 
+<p align="center">
 <img src="https://user-images.githubusercontent.com/16842872/50356770-4cd94580-0579-11e9-9f84-69bcaf04e65d.png" width="800" height="400">
-
+</p>
 
 ## Model Results and Explainability
 
-Once the model is trained we can explore the learnt embeddings as follows. We know that each movie is represented by a 8 dimensional vector. We can compute the network simialrity to fnid out the nearest movie to a querried movie. In the code file, I have shown how we can use euclidean and cosine distance for computing this metric.
+Once the model is trained we can explore the learnt embeddings as follows. We know that each movie is represented by a 8 dimensional vector. We can compute the vector simialrity to find out the nearest movie to a querried movie. In the code file, I have shown how we can use euclidean and cosine distance for computing this metric. any value between 1 and 2 show the degree of similarity between two movies and values between 0 and 1 denotes how dissimilar two movies are.
 
+[Code](visualising_embeddings.ipynb)
+
+<p align="center">
 <img src="https://user-images.githubusercontent.com/16842872/50356831-a04b9380-0579-11e9-855c-2d5e85b56c89.png" width="900" height="600">
+</p>
 
-We see the Mean Absolute Error of the above model decreases with ever increasing epoch but the validation set stops improving after 4 epochs. It indicates that a model which avoids overfitting can be fitted very easily. 
+We see the Mean Absolute Error of the above model decreases with ever increasing epoch but the validation set stops improving after 4 epochs. It indicates that a model which avoids overfitting can be trained very quickly. 
 
 > **Qualitative Results:** 
 In general, we see that embeddings have done a good job at identifying the similarities between movies.
@@ -50,7 +54,7 @@ In general, we see that embeddings have done a good job at identifying the simil
 
 <img src="https://user-images.githubusercontent.com/16842872/50356832-a04b9380-0579-11e9-8230-e092e01a26fb.png" width="900" height="500">
 
-We have applied TSNE to visualise theses 8 dimesnional movie vectors in 2D. it provides us with an insight as to how how are different movies clustered in the two dimensional space.
+We have also applied TSNE to visualise theses 8 dimensional movie embeddings in 2D. It provides us with an insight as to how how are different movies clustered in the two dimensional space and provides a window towards model explainability.
 
 ```python
 from sklearn.manifold import TSNE
@@ -61,10 +65,10 @@ embs = tsne.fit_transform(w)
 
 <img src="https://user-images.githubusercontent.com/16842872/50356834-a0e42a00-0579-11e9-91e1-3385cd4ead5b.png" width="900" height="500">
 
-[Code](visualising_embeddings.ipynb)
+
 
 ## Concluding Remarks
-Given the effectiveness of our model to correctly cluster movies with relevant genrres and popularity. We feel that this model can be used to successfully generate recommendation for a new set of users for whom we do not have much information to 
+Given the effectiveness of our model to correctly cluster movies with relevant genrres and popularity. We feel that this model can be used to successfully generate recommendation for a new set of users for whom we do not have much information for. This approach provides us with a undestnding as to how our model is 
 
 ## Requirements
 ```
