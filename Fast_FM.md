@@ -1,4 +1,28 @@
 
+### Background : A matrix factorization based model on Movielens-1M
+
+What we accomplished in the previous project in HW2?
+
+Matrix Factorization - drawbacks
+
+### What are Factorization machines?
+
+### Methodolgy in this exploratory project
+
+### Comparison of the different models built
+
+### Paramters used in the model
+
+### Requirements 
+
+### Future Tasks
+
+### References
+
+
+
+
+### FastFM walkthrough
 
 ```python
 import numpy as np
