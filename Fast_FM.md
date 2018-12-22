@@ -102,6 +102,15 @@ The following features were one-hot encoded and fed to the FastFM function.
 	* Western
 
 
+### Time for model training with %data provided for model training
+One hot encoding of additional features led to a sparse matrix with upto 13,000 features thus took significantly large amounts of time to train.
+![text](Fast_FM_files/Fast_FM_47_1.png)
+
+### RMSE with %data provided for model training
+Additional features lowered the best model RMSE from 0.8656 to 0.85402, however require larger number of iterations to reach the minima
+![text](Fast_FM_files/Fast_FM_45_1.png)
+
+
 ### Evaluation of model performance as a function of number of latent features
 
 Once we tuned an FM on the ratings matrix, the next step was to evaluate the impact of having varying (k) latent feature vectors and its affect on RMSE of train and CV. Clearly, it led to overfitting.
