@@ -29,8 +29,13 @@ This needs dataset specific transformations which require extensive quality chec
 |SVD++	|0.862	|0.673	|
 |Baseline|0.909	|0.719	|
 |Random	| 1.504|1.206	|
+* Results from the surprise packages default functions
 
 #### Package 2 : FastFM
+
+### RMSE with %data provided for model training
+Additional features lowered the best model RMSE from 0.8656 to **0.85402**, however require larger number of iterations to reach the minima
+![text](Fast_FM_files/Fast_FM_45_1.png)
 
 The FM evaluation using FastFM was done from three different angles.
 1. Training models on extremely sparse to dense data sets
@@ -108,9 +113,6 @@ The following features were one-hot encoded and fed to the FastFM function.
 One hot encoding of additional features led to a sparse matrix with upto 13,000 features thus took significantly large amounts of time to train.
 ![text](Fast_FM_files/Fast_FM_47_1.png)
 
-### RMSE with %data provided for model training
-Additional features lowered the best model RMSE from 0.8656 to 0.85402, however require larger number of iterations to reach the minima
-![text](Fast_FM_files/Fast_FM_45_1.png)
 
 ### Performance of FM with different subsets of user and items (*of the form atmost x*)
 #### User subsets
