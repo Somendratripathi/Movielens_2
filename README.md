@@ -81,7 +81,7 @@ For new movies, through our autoencoders, we would be able to determine similar 
 
 ## Models
 - [Approximate Nearest Neighbors (ANN) using Locality Sensitive Hashing (LSH)](ANN.md)
-- [Factorization Machines using ALS on user/item features](Fast_FM.md)
+- [Factorization Machines using ALS on user-item features](Fast_FM.md)
 - [Deep Learning Approaches: Learning Embeddings through Shallow Networks](DeepLearning.md)
 
 Each of the above 3 models are used for certain purposes. Embeddings will be used to recommed to new users for whom we do not have enough data. Once the user reaches the threshold after which we are confident, we would show the users recommendations from all 3 models. Depending on the feedback we recieve, we can assign weights to the 3 models. Due to the weights, the number of movies recommeded by a particular model would be more as compared with the other models.
